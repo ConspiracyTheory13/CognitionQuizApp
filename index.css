@@ -1,0 +1,56 @@
+* {
+     box-sizing: border-box;
+}
+
+header {
+     width: 125px;
+     height: 125px;
+}
+
+.quizHeader {
+     width: auto;
+     height: 200px;
+     border-radius: 15px;
+}
+
+body {
+     display: flex;
+     color: white;
+     font-size: 14px;
+     background-color: black;
+     height: 500px;
+     font-size: 16px;
+
+}
+
+.quizStart {
+     justify-content: center;
+     text-align: center;
+     margin-top: 150px;
+     background-color: black;
+     height: 300px;
+     width: 700px;
+     margin-left: 30px;
+     margin-right: 30px;
+}
+
+/* .quizProgression {
+     align-content: space-around;
+} */
+
+/* li {
+     list-style-type: none;
+     align-items: flex-start;
+     display: inline-block;
+} */
+
+.startButton {
+     width: 300px;
+     height: 50px;
+     margin-top: 30px;
+}
+
+h1 {
+     font-size: 16px;
+     color: grey;
+}
