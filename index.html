@@ -6,6 +6,8 @@
           <title>Mental Short Cuts Quiz App</title>
           <meta name="description" content="Test your knowledge of cognitive short cuts.">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
           <script src="index.js"></script>
           <link href="index.css" rel="stylesheet" type="text/css" />
      </head>
@@ -16,14 +18,6 @@
 
     <main role="main">
       <div class="quizStart">
-           <!-- <div class="quizProgression"> -->
-
-          <!-- <ul role ="Quiz progression">
-               <li>Question: <span class="questionNumber">0</span>/10</li>
-               <li>Score: <span class="score">0</span></li>
-
-          </ul> -->
-            <!-- </div> -->
 <div class="quizHeader">
      <img class="quizHeader" src="neuron.jpg" alt="neuronart"/>
 </div>
@@ -37,10 +31,14 @@ Usually these short cuts are helpful in keeping us from becoming overloaded, how
 are some pitfalls to these short cuts! Start the quiz to learn about some of the ways that
 our brains commonly help us!
  </h1>
-
-        <button type="button" class="startButton">Start the quiz!</button>
+        <button type="button" class="startBttn">Start the quiz!</button>
       </div>
-      <div class="questionAnswerForm"></div>
+
+      <div class="questionAnswerForm" id='answerFormRender'>
+           <div class= "quizProgressionTracker">
+           </div>
+      </div>
+
     </main>
   </body>
 </html>
