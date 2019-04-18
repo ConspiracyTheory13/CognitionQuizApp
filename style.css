@@ -1,0 +1,62 @@
+* {
+     display: flex;
+
+}
+header {
+     width: 150px;
+     height: 150px;
+}
+
+.quizStart {
+     justify-content: center;
+     border: 2px white solid;
+     text-align: center;
+     margin-top: 150px;
+     background-color: black;
+     height: 300px;
+     width: 700px;
+     margin-left: 30px;
+     margin-right: 30px;
+}
+
+body {
+     color: white;
+     font-size: 14px;
+     background-image: url("background.jpg");
+     background-color: black;
+     height: 500px;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     position: relative;
+     font-size: 16px;
+
+}
+
+.quizStart {
+
+}
+
+
+.quizProgression {
+align-content: space-around;
+}
+
+p {
+     align-self: center;
+
+}
+
+
+li {
+     list-style-type: none;
+     align-items: flex-start;
+}
+
+.startButton, .nextButton {
+     /* justify-content: center; */
+}
+
+h1 {
+     font-size: 14px;
+}
