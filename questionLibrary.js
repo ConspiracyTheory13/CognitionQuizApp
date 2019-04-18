@@ -1,6 +1,6 @@
 const STORE = [
      {
-          question: 'You value your status as an informed person who always watches the news and stays up to date on local and world politics via the internet and social media. However, you are often afraid and imagine that crime rates are out of control. Your mind is using the:'
+          question: 'You value your status as an informed person who always watches the news and stays up to date on local and world politics via the internet and social media. However, you are often afraid and imagine that crime rates are out of control. Your mind is using the:',
           answers: [
                'Depressive Realism heuristic.',
                'Availability heuristic.',
@@ -82,7 +82,7 @@ const STORE = [
           correctAnswer: 'Confirmation bias',
      },
      {
-          question: 'The tendency to prescribe a person’s apparent behavior to their personality and to ignore circumstance is the:'
+          question: 'The tendency to prescribe a person’s apparent behavior to their personality and to ignore circumstance is the:',
           answers: [
                'Simulation heuristic.',
                'Gambler’s Fallacy',
@@ -98,7 +98,7 @@ const STORE = [
                'Outcome Bias',
                'Normalcy Bias',
                'Omission Bias',
-               'Learned Helplessness
+               'Learned Helplessness'
           ],
           correctAnswer: 'Outcome Bias',
      }
