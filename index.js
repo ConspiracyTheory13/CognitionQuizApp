@@ -11,7 +11,7 @@ $(document).ready(function() {
                '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
                '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
                '</form>'+
-               '<button type="button" class="bttn" id="#nextBttn">Next Question!</button>'
+               '<button type="button" class="bttn" id="nextBttn">Next Question!</button>'
 
 
      $('.startBttn').on("click",(function(event){
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 
 function nxtButton() {
-     $('main').on("click", '.nextBttn' (function(event){
+     $('#nextBttn').on("click", (function(event){
           console.log('nextbuttonfires');
           e.preventDefault()
           questionNumber ++;
@@ -109,7 +109,7 @@ function callQuestion () {
 });
 
 
-
+nxtBttn();
 
 
 //                }
