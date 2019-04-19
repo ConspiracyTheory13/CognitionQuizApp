@@ -23,19 +23,15 @@ $(document).ready(function() {
                     clickClose: false,
                     showClose: false
           });
+
+     nxtButton();
      }));
 
-  //    function nxtButton() {
-  //    $('.main').on('click', '#nextBttn', function(event) {
-  //        console.log('nextbuttonfires');
-  //    });
-  // }
-
-
 function nxtButton() {
-          $('main').on("click", '#nextBttn', (function(event){
+          //for loop?
+
+          $('#nextBttn').on("click", (function(event){
           console.log('nextbuttonfires');
-          e.preventDefault()
           questionNumber ++;
           questionForm = '<form id"questionAnswers" role="questionandanswers">' +
           '<h1>' + STORE[questionNumber].question + '</h1>' +
