@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 
 function nxtButton() {
-     $('#nextBttn').on("click", (function(event){
+          $('main').on("click", '#nextBttn', (function(event){
           console.log('nextbuttonfires');
           e.preventDefault()
           questionNumber ++;
@@ -106,10 +106,11 @@ function callQuestion () {
      //
      // $(renderQuiz);
 
+     nxtButton();
+
+
 });
 
-
-nxtBttn();
 
 
 //                }
