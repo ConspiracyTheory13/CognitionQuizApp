@@ -4,6 +4,12 @@ $(document).ready(function() {
      let score = 0;
 
      let questionForm =
+               '<div class= "quizProgressionTracker">' +
+                    '<ul>' +
+                         '<li>Question: <span class="questionNumber">0</span>/10</li>' +
+                         '<li>Score: <span class="score">0</span></li>' +
+                    '</ul>' +
+               '</div>' +
                '<form role="questionandanswers">' +
                '<h1>' + STORE[0].question + '</h1>' +
                '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
@@ -29,55 +35,76 @@ $(document).ready(function() {
 
 function nxtButton() {
           //for loop?
-
-          $('#nextBttn').on("click", (function(event){
+          if (questionNumber < STORE.length) {
+          $('#nextBttn').on("click", (function(event) {
           console.log('nextbuttonfires');
           questionNumber ++;
-          questionForm = '<form id"questionAnswers" role="questionandanswers">' +
+          return questionForm = '<form id"questionAnswers" role="questionandanswers">' +
           '<h1>' + STORE[questionNumber].question + '</h1>' +
           '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
           '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[1] + '<br>' +
           '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
           '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
-          '</form>'
-          $("#answerFormRender").html(questionForm);
-     }));
-}
+          '</form>' +
+          $("#answerFormRender").html(questionForm) +
+          nxtButton();
+          }));
+          } else {
+          renderResults();
+          restartQuiz();
+          $('.questionNumber').text(10);
+          }}
 
-     function buildQuestion() {
+// $('#nextBttn').on("click", (function(event){
+// console.log('nextbuttonfires');
+// questionNumber ++;
+// questionForm = '<form id"questionAnswers" role="questionandanswers">' +
+// '<h1>' + STORE[questionNumber].question + '</h1>' +
+// '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
+// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[1] + '<br>' +
+// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
+// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
+// '</form>'
+// $("#answerFormRender").html(questionForm);
+// }));
+// }
 
-          if (questionNumber < STORE.length) {
-               questionNumber ++;
-               return  `<div class="question-${questionNumber[0]}">
-                        <h1>${STORE[questionNumber].question}</h1>
-                        <form>
-                        <fieldset>
-                        <label class="answerOption">
-                        <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required>
-                        <span>${STORE[questionNumber].answers[0]}</span>
-                        </label>
-                        <label class="answerOption">
-                        <input type="radio" value="${STORE[questionNumber].answers[1]}" name="answer" required>
-                        <span>${STORE[questionNumber].answers[1]}</span>
-                        </label>
-                        <label class="answerOption">
-                        <input type="radio" value="${STORE[questionNumber].answers[2]}" name="answer" required>
-                        <span>${STORE[questionNumber].answers[2]}</span>
-                        </label>
-                        <label class="answerOption">
-                        <input type="radio" value="${STORE[questionNumber].answers[3]}" name="answer" required>
-                        <span>${STORE[questionNumber].answers[3]}</span>
-                        </label>
-                        <button type="submit" class="submitButton">Submit</button>
-                        </fieldset>
-                        </form>
-                        </div>`;
-         } else {
-         renderResults();
-         restartQuiz();
-         $('.questionNumber').text(10);
-         }
-}
+
+
+     // function buildQuestion() {
+     //
+     //      if (questionNumber < STORE.length) {
+     //           questionNumber ++;
+     //           return  `<div class="question-${questionNumber[0]}">
+     //                    <h1>${STORE[questionNumber].question}</h1>
+     //                    <form>
+     //                    <fieldset>
+     //                    <label class="answerOption">
+     //                    <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required>
+     //                    <span>${STORE[questionNumber].answers[0]}</span>
+     //                    </label>
+     //                    <label class="answerOption">
+     //                    <input type="radio" value="${STORE[questionNumber].answers[1]}" name="answer" required>
+     //                    <span>${STORE[questionNumber].answers[1]}</span>
+     //                    </label>
+     //                    <label class="answerOption">
+     //                    <input type="radio" value="${STORE[questionNumber].answers[2]}" name="answer" required>
+     //                    <span>${STORE[questionNumber].answers[2]}</span>
+     //                    </label>
+     //                    <label class="answerOption">
+     //                    <input type="radio" value="${STORE[questionNumber].answers[3]}" name="answer" required>
+     //                    <span>${STORE[questionNumber].answers[3]}</span>
+     //                    </label>
+     //                    <button type="submit" class="submitButton">Submit</button>
+     //                    </fieldset>
+     //                    </form>
+     //                    </div>`;
+//          } else {
+//          renderResults();
+//          restartQuiz();
+//          $('.questionNumber').text(10);
+//          }
+// }
 
 function advanceQuestionNumber () {
      questionNumber ++;
@@ -91,7 +118,6 @@ function updateScore() {
 function callQuestion () {
      $('.questionAnswerForm').html(buildQuestion());
 };
-     console.log("Modalrunning");
 
      // function renderQuiz () {
      //   startQuiz();
@@ -101,8 +127,23 @@ function callQuestion () {
      // }
      //
      // $(renderQuiz);
+     function userAnswerFeedbackCorrect () {
+       let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
+       $('.questionAnswerForm').html(`<div class="correctFeedback"><div class="icon"><img src="${STORE[questionNumber].icon}" alt="${STORE[questionNumber].alt}"/></div><p><b>You got it right!</b></p><button type=button class="nextButton">Next</button></div>`);
+     }
 
-     nxtButton();
+     //user feedback for wrong answer
+     function userAnswerFeedbackWrong () {
+       let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
+       // let iconImage = `${STORE[questionNumber].icon}`;
+       $('.questionAnswerForm').html(`<div class="correctFeedback"><div class="icon"><img src="${STORE[questionNumber].icon}" alt="${STORE[questionNumber].alt}"/></div><p><b>You got it wrong</b><br>the correct answer is <span>"${correctAnswer}"</span></p><button type=button class="nextButton">Next</button></div>`);
+     }
+
+     //update score text
+     function updateScore () {
+       changeScore();
+       $('.score').text(score);
+     }
 
 
 });
