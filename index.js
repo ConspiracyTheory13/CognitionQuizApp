@@ -6,18 +6,17 @@ $(document).ready(function() {
      let questionForm =
                '<div class= "quizProgressionTracker">' +
                     '<ul>' +
-                         '<li>Question: <span class="questionNumber">0</span>/10</li>' +
-                         '<li>Score: <span class="score">0</span></li>' +
+                         '<li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>' +
                     '</ul>' +
                '</div>' +
                '<form role="questionandanswers">' +
-               '<h1>' + STORE[0].question + '</h1>' +
+               '<h1>' + STORE[questionNumber].question + '</h1>' +
                '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
                '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[1] + '<br>' +
                '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
                '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
                '</form>'+
-               '<button type="button" class="bttn" id="nextBttn">Next Question!</button>'
+               '<button type="button" class="bttn" id="nextBttn">Next Question!</button>';
 
 
      $('.startBttn').on("click",(function(event){
@@ -30,94 +29,91 @@ $(document).ready(function() {
                     showClose: false
           });
 
-     nxtButton();
+          nxtButton();
      }));
+
+
 
 function nxtButton() {
           //for loop?
-          if (questionNumber < STORE.length) {
           $('#nextBttn').on("click", (function(event) {
-          console.log('nextbuttonfires');
-          questionNumber ++;
-          return questionForm = '<form id"questionAnswers" role="questionandanswers">' +
-          '<h1>' + STORE[questionNumber].question + '</h1>' +
-          '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
-          '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[1] + '<br>' +
-          '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
-          '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
-          '</form>' +
-          $("#answerFormRender").html(questionForm) +
-          nxtButton();
+               console.log('nextbuttonfires');
+
+               if (questionNumber < STORE.length) {
+                    questionNumber ++;
+
+                    questionForm = '<form id"questionAnswers" role="questionandanswers">' +
+                    '<div class= "quizProgressionTracker">' +
+                         '<ul>' +
+                              '<li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>' +
+                              '<li>Correct: <span class="score">0</span></li>' +
+                              '<li>Incorrect: <span class="score">0</span></li>' +
+                         '</ul>' +
+                    '</div>' +
+                    '<h1>' + STORE[questionNumber].question + '</h1>' +
+                    '<input type="radio" class= "answerOption" name="answer" value= ${STORE[questionNumber].answers[0]>' + STORE[questionNumber].answers[0] + '<br>' +
+                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[1]">' + STORE[questionNumber].answers[1] + '<br>' +
+                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[2]">' + STORE[questionNumber].answers[2] + '<br>' +
+                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[3]">' + STORE[questionNumber].answers[3] + '<br>' +
+                    '</form>' +
+                    '<button type="button" class="bttn" id="nextBttn">Next Question!</button>'
+                    let test = $('.answerOption').val();
+                         console.log(test);
+                    $("#answerFormRender").html(questionForm);
+                    nxtButton();
+               } else {
+                    renderResults();
+                    restartQuiz();
+                    $('.questionNumber').text(10);
+               }
           }));
-          } else {
-          renderResults();
-          restartQuiz();
-          $('.questionNumber').text(10);
-          }}
+}
 
-// $('#nextBttn').on("click", (function(event){
-// console.log('nextbuttonfires');
-// questionNumber ++;
-// questionForm = '<form id"questionAnswers" role="questionandanswers">' +
-// '<h1>' + STORE[questionNumber].question + '</h1>' +
-// '<input type="radio" class= "answerOption" name="answer" value="" checked>' + STORE[questionNumber].answers[0] + '<br>' +
-// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[1] + '<br>' +
-// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[2] + '<br>' +
-// '<input type="radio" class= "answerOption" name="answer" value="">' + STORE[questionNumber].answers[3] + '<br>' +
-// '</form>'
-// $("#answerFormRender").html(questionForm);
-// }));
+//when you click nextBttn..
+// the computer must compare user input to correctAnswer,
+//then if correctScore, increment correctScore
+// if incorrectScore, incre4memnt incorrectScore
+
+// let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
+//
+// function renderScore   ($("input[name='radio buttons']:checked").val() {
+//      if (answers == correctAnswer() {
+//           $('.questionAnswerForm').html
+//           (`<div class="correctFeedback"><div class="icon">
+//           <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
+//           Correct!></p><button type=button class="nextButton">Next</button></div>`);
+//           correctScore++;
+//      } else {
+//           incorrectScore++;
+//           $('.questionAnswerForm').html
+//           (`<div class="incorrectFeedback"><div class="icon">
+//           <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
+//           Incorrect!></p><button type=button class="nextButton">Next</button></div>`);
+//
+//      }}
+
+
+     // renderResults();
+
+// function restartQuiz () {
+//      $('#restartBttn').on("click", (function(event) {
+
+// //you haven't built a restartbttn yet btw, don't forget
+// location.reload();
+// }
+
+// function restartQuiz () {
+//   $('main').on('click', '.restartButton', function (event) {
+//     location.reload();
+//   });
 // }
 
 
-
-     // function buildQuestion() {
-     //
-     //      if (questionNumber < STORE.length) {
-     //           questionNumber ++;
-     //           return  `<div class="question-${questionNumber[0]}">
-     //                    <h1>${STORE[questionNumber].question}</h1>
-     //                    <form>
-     //                    <fieldset>
-     //                    <label class="answerOption">
-     //                    <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required>
-     //                    <span>${STORE[questionNumber].answers[0]}</span>
-     //                    </label>
-     //                    <label class="answerOption">
-     //                    <input type="radio" value="${STORE[questionNumber].answers[1]}" name="answer" required>
-     //                    <span>${STORE[questionNumber].answers[1]}</span>
-     //                    </label>
-     //                    <label class="answerOption">
-     //                    <input type="radio" value="${STORE[questionNumber].answers[2]}" name="answer" required>
-     //                    <span>${STORE[questionNumber].answers[2]}</span>
-     //                    </label>
-     //                    <label class="answerOption">
-     //                    <input type="radio" value="${STORE[questionNumber].answers[3]}" name="answer" required>
-     //                    <span>${STORE[questionNumber].answers[3]}</span>
-     //                    </label>
-     //                    <button type="submit" class="submitButton">Submit</button>
-     //                    </fieldset>
-     //                    </form>
-     //                    </div>`;
-//          } else {
-//          renderResults();
-//          restartQuiz();
-//          $('.questionNumber').text(10);
-//          }
+//
+// function callQuestion () {
+//      $('.questionAnswerForm').html(buildQuestion());
+//
 // }
-
-function advanceQuestionNumber () {
-     questionNumber ++;
-     $('.questionNumber').text(questionNumber+1);
-}
-
-function updateScore() {
-     score++;
-}
-
-function callQuestion () {
-     $('.questionAnswerForm').html(buildQuestion());
-};
 
      // function renderQuiz () {
      //   startQuiz();
@@ -127,23 +123,8 @@ function callQuestion () {
      // }
      //
      // $(renderQuiz);
-     function userAnswerFeedbackCorrect () {
-       let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
-       $('.questionAnswerForm').html(`<div class="correctFeedback"><div class="icon"><img src="${STORE[questionNumber].icon}" alt="${STORE[questionNumber].alt}"/></div><p><b>You got it right!</b></p><button type=button class="nextButton">Next</button></div>`);
-     }
 
-     //user feedback for wrong answer
-     function userAnswerFeedbackWrong () {
-       let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
-       // let iconImage = `${STORE[questionNumber].icon}`;
-       $('.questionAnswerForm').html(`<div class="correctFeedback"><div class="icon"><img src="${STORE[questionNumber].icon}" alt="${STORE[questionNumber].alt}"/></div><p><b>You got it wrong</b><br>the correct answer is <span>"${correctAnswer}"</span></p><button type=button class="nextButton">Next</button></div>`);
-     }
 
-     //update score text
-     function updateScore () {
-       changeScore();
-       $('.score').text(score);
-     }
 
 
 });
@@ -156,10 +137,6 @@ function callQuestion () {
 //from my const STORE in the file questionlibrary.js. The question needs to be
 // appended into h1, and the answers need to be appended into each radio button.
 
-// submitAnswer, function tallyUserScore:
-// on submit, I need it to check submitted answer against correctAnswer in
-// STORE.questionLibrary.js, if correct I need it to increase correctScore by one, if
-// incorrect I need it to increase incorrectScore by one.
 
 // function nextQuestion:
 // call another question from STORE.questionLibrary.js
