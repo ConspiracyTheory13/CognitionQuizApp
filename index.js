@@ -39,33 +39,47 @@ function nxtButton() {
           $('#nextBttn').on("click", (function(event) {
                console.log('nextbuttonfires');
 
-               if (questionNumber < STORE.length) {
-                    questionNumber ++;
-
-                    questionForm = '<form id"questionAnswers" role="questionandanswers">' +
-                    '<div class= "quizProgressionTracker">' +
-                         '<ul>' +
-                              '<li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>' +
-                              '<li>Correct: <span class="score">0</span></li>' +
-                              '<li>Incorrect: <span class="score">0</span></li>' +
-                         '</ul>' +
-                    '</div>' +
-                    '<h1>' + STORE[questionNumber].question + '</h1>' +
-                    '<input type="radio" class= "answerOption" name="answer" value= ${STORE[questionNumber].answers[0]>' + STORE[questionNumber].answers[0] + '<br>' +
-                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[1]">' + STORE[questionNumber].answers[1] + '<br>' +
-                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[2]">' + STORE[questionNumber].answers[2] + '<br>' +
-                    '<input type="radio" class= "answerOption" name="answer" value="${STORE[questionNumber].answers[3]">' + STORE[questionNumber].answers[3] + '<br>' +
-                    '</form>' +
-                    '<button type="button" class="bttn" id="nextBttn">Next Question!</button>'
-                    let test = $('.answerOption').val();
-                         console.log(test);
-                    $("#answerFormRender").html(questionForm);
-                    nxtButton();
-               } else {
-                    renderResults();
-                    restartQuiz();
-                    $('.questionNumber').text(10);
-               }
+                    if (questionNumber < STORE.length) {
+                         questionNumber ++;
+                         questionForm = `<form id"questionAnswers" role="questionandanswers">'
+                             <div class= "quizProgressionTracker">
+                                  <ul>
+                                       <li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>
+                                       <li>Correct: <span class="score">0</span></li>
+                                       <li>Incorrect: <span class="score">0</span></li>
+                                  </ul>
+                          </div>
+                              <div class="question-${questionNumber}">
+                        <h1>${STORE[questionNumber].question}</h1>
+                        <form>
+                        <fieldset>
+                        <label class="answerOption">
+                        <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required>
+                        <span>${STORE[questionNumber].answers[0]}</span>
+                        </label>
+                        <label class="answerOption">
+                        <input type="radio" value="${STORE[questionNumber].answers[1]}" name="answer" required>
+                        <span>${STORE[questionNumber].answers[1]}</span>
+                        </label>
+                        <label class="answerOption">
+                        <input type="radio" value="${STORE[questionNumber].answers[2]}" name="answer" required>
+                        <span>${STORE[questionNumber].answers[2]}</span>
+                        </label>
+                        <label class="answerOption">
+                        <input type="radio" value="${STORE[questionNumber].answers[3]}" name="answer" required>
+                        <span>${STORE[questionNumber].answers[3]}</span>
+                        </label>
+                        '<button type="button" class="bttn" id="nextBttn">Next Question!</button>'
+                        </fieldset>
+                        </form>
+                        </div>`;
+                        $('#answerForm').html(questionForm);
+                    } else {
+                        // renderResults();
+                        // restartQuiz();
+                        // $('.questionNumber').text(10)
+                        console.log('else runs');
+                    }
           }));
 }
 
@@ -74,8 +88,8 @@ function nxtButton() {
 //then if correctScore, increment correctScore
 // if incorrectScore, incre4memnt incorrectScore
 
-// let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
-//
+let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
+
 // function renderScore   ($("input[name='radio buttons']:checked").val() {
 //      if (answers == correctAnswer() {
 //           $('.questionAnswerForm').html
@@ -91,7 +105,6 @@ function nxtButton() {
 //           Incorrect!></p><button type=button class="nextButton">Next</button></div>`);
 //
 //      }}
-
 
      // renderResults();
 
@@ -156,7 +169,7 @@ function nxtButton() {
 // 'modal:before-open';
 
      // $( "#dataTable tbody tr" ).on( "click", function() {
-     //   console.log( $( this ).text() );
+     //   console.log( $( thttps://repl.it/@Conspiracyx13/UnevenDelectableBsddaemonhis ).text() );
      // });
 
 // <div class="quizProgression">
