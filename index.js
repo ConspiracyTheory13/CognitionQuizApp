@@ -1,6 +1,6 @@
 // 'use strict'
 $(document).ready(function() {
-     let questionNumber = 1;
+     let questionNumber = 0;
      let score = 0;
 
      let questionForm =
@@ -39,7 +39,7 @@ function nxtButton() {
           $('#nextBttn').on("click", (function(event) {
                console.log('nextbuttonfires');
 
-               if (questionNumber <= STORE.length) {
+               if (questionNumber < STORE.length) {
                     let userInput = $("input[name=answer]:checked").val();
                     renderScoring(questionNumber, userInput);
                     questionNumber ++;
@@ -56,7 +56,7 @@ function nxtButton() {
                         <form>
                         <fieldset>
                         <label class="answerOption">
-                        <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required>
+                        <input type="radio" value="${STORE[questionNumber].answers[0]}" name="answer" required checked>
                         <span>${STORE[questionNumber].answers[0]}</span>
                         </label> <br>
                         <label class="answerOption">
@@ -99,9 +99,11 @@ function nxtButton() {
 // working around this bit of code
 
     function renderScoring (currentQuestion, selectedAnswer) {
+         console.log('renderscoring fires');
          $('#nextBttn').on("click", (function(event) {
-          console.log('renderscoring fires');
-          if (STORE[currentQuestion].answers[userInput] == STORE[currentQuestion].correctAnswer) {
+              console.log('renderscoring next fires');
+          if (STORE[currentQuestion].answers[selectedAnswer] == STORE[currentQuestion].correctAnswer) {
+               console.log("comparison if running");
                $("#answerFormRender").html(".correctFeedback");
                correctScore ++;
                $("#answerFormRender").modal( {
@@ -122,9 +124,7 @@ function nxtButton() {
     }
 //working around on this bit of code
 
-
 });
-
 //when you click nextBttn..
 // the computer must compare user input to correctAnswer,
 //then if correctScore, increment correctScore
