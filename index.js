@@ -32,7 +32,6 @@ $(document).ready(function() {
                     clickClose: false,
                     showClose: false
           });
-
           nxtButton();
      }));
 
@@ -41,17 +40,17 @@ $(document).ready(function() {
 function nxtButton() {
           //for loop?
           $('#nextBttn').on("click", (function(event) {
+               let userInput = $("input[name=answer]:checked").val();
+               renderScoring(questionNumber, userInput);
                console.log('nextbuttonfires');
                if (questionNumber < STORE.length) {
-                    let userInput = $("input[name=answer]:checked").val();
-                    renderScoring(questionNumber, userInput);
                     questionNumber ++;
                     questionForm = `<form id"questionAnswers" role="questionandanswers">
                              <div class= "quizProgressionTracker">
                                   <ul>
                                        <li>Question: <span class="questionNumber"> ${questionNumber} </span>/10</li>
-                                       <li>Correct: <span class="score">0</span></li>
-                                       <li>Incorrect: <span class="score">0</span></li>
+                                       <li>Correct: <span class="score"> ${correctScore} </span></li>
+                                       <li>Incorrect: <span class="score">  ${incorrectScore}  </span></li>
                                   </ul>
                           </div>
                               <div class="question-${questionNumber}">
@@ -80,6 +79,7 @@ function nxtButton() {
                         </div>`;
                     $("#answerFormRender").html(questionForm);
                     nxtButton();
+
                } else {
                     renderResults();
                     restartQuiz();
@@ -108,25 +108,30 @@ function nxtButton() {
          console.log('selectedAnswer =' + STORE[currentQuestion].answers[selectedAnswer]);
          console.log('correctAnswer =' + STORE[currentQuestion].correctAnswer);
 
-          if (STORE[currentQuestion].answers[selectedAnswer] == STORE[currentQuestion].correctAnswer) {
-               console.log("comparison if running");
-               $("#answerFormRender").html(`${questionCorrect}`);
-               correctScore ++;
-               // $("#answerFormRender").modal( {
-               //      fadeDuration: 100,
-               //      closeExisting: false,
-               //      escapeClose: false,
-               //      clickClose: false,
-               //      showClose: false
-               // })
-          } else {
+          $('#scoreBttn').on('submit', (function(event) {
+             if (STORE[currentQuestion].answers[selectedAnswer] == STORE[currentQuestion].correctAnswer) {
+                  console.log("comparison if running");
+                  correctScore ++;
+                  questionNumber++;
+                  $('#answerFormRender').html(`${questionCorrect}`);
+                  $("#answerFormRender").modal({
+                         fadeDuration: 100,
+                         closeExisting: false,
+                         escapeClose: false,
+                         clickClose: false,
+                         showClose: false
+               });
+
+               } else {
                console.log("renderScoring elsefires");
                $("#answerFormRender").html(`${questionIncorrect}`);
                incorrectScore++;
+               questionNumber++;
+
 
                // $(".questionIncorrect").html
      }
-         // });
+}));
 
     }
 //working around on this bit of code
