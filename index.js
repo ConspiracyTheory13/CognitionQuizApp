@@ -73,7 +73,7 @@ function nxtButton() {
                         <input type="radio" value="3" name="answer" required>
                         <span>${STORE[questionNumber].answers[3]}</span>
                         </label> <br>
-                        <button type="button" class="bttn" id="nextBttn">Next Question!</button>
+                        <button type="button" class="bttn" id="scoreBttn">Next Question!</button>
                         </fieldset>
                         </form>
                         </div>`;
