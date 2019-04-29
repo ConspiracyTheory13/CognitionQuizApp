@@ -1,133 +1,148 @@
 // 'use strict'
 $(document).ready(function() {
-     let questionNumber = 0;
      let score = 0;
      let incorrectScore= 0;
+     let questionNumber = 0;
      let correctScore = 0;
      let currentQuestion = 0;
 
 
-     let questionForm =
-               '<div class= "quizProgressionTracker">' +
-                    '<ul>' +
-                         '<li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>' +
-                    '</ul>' +
-               '</div>' +
-               '<form role="questionandanswers">' +
-               '<h1>' + STORE[questionNumber].question + '</h1>' +
-               '<input type="radio" class= "answerOption" name="answer" value="0" checked>' + STORE[questionNumber].answers[0] + '<br>' +
-               '<input type="radio" class= "answerOption" name="answer" value="1">' + STORE[questionNumber].answers[1] + '<br>' +
-               '<input type="radio" class= "answerOption" name="answer" value="2">' + STORE[questionNumber].answers[2] + '<br>' +
-               '<input type="radio" class= "answerOption" name="answer" value="3">' + STORE[questionNumber].answers[3] + '<br>' +
-               '</form>'+
-               '<button type="button" class="bttn" id="nextBttn">Next Question!</button>';
+     //create a function that takes a questionNumber and returns the html for the question form as a string
+     function buildQuestionForm(arg){
+
+          return '<div class= "quizProgressionTracker">' +
+               '<ul>' +
+                    '<li>Question: <span class="questionNumber">' + questionNumber + '</span>/10</li>' +
+                    '<li>Correct: <span class="score">' + correctScore + '</span></li>' +
+                    '<li>Incorrect: <span class="score">' + incorrectScore + '</span></li>' +
+               '</ul>' +
+          '</div>' +
+          '<form role="questionandanswers">' +
+          '<h1>' + STORE[arg].question + '</h1>' +
+          '<input type="radio" class= "answerOption" name="answer" value="0" checked>' + STORE[arg].answers[0] + '<br>' +
+          '<input type="radio" class= "answerOption" name="answer" value="1">' + STORE[arg].answers[1] + '<br>' +
+          '<input type="radio" class= "answerOption" name="answer" value="2">' + STORE[arg].answers[2] + '<br>' +
+          '<input type="radio" class= "answerOption" name="answer" value="3">' + STORE[arg].answers[3] + '<br>' +
+          '</form>'
+      }
+
+     let questionForm = buildQuestionForm(currentQuestion); //use the previously created function to assign that value to questionForm
 
 
-     $('.startBttn').on("click",(function(event){
-          $('#answerFormRender').append(questionForm);
-          $("#answerFormRender").modal({
-                    fadeDuration: 100,
-                    closeExisting: false,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-          });
+$(".startBttn").on("click", function(event) {
+    let modalGuts = `
+      <section id="score">
+      </section>
+      <section id="questionAnswer">
+      </section>
+      <section id="nextButton">
+      </section>`;
 
-          nxtButton();
+    $("#quizModal").append(modalGuts);
+    $("#quizModal").modal({
+      fadeDuration: 100,
+      closeExisting: false,
+      escapeClose: false,
+      clickClose: false,
+      showClose: false
+    });
+
+    let nextButton =
+      '<button type="button" class="bttn" id="nextBttn">Next Question!</button>';
+    $("#nextButton").append(nextButton);
+    renderQuestion(currentQuestion);
+    // nxtButton();
+  });
+
+
+function renderQuestion (arg1) {
+     //take a variable that represents the current question that the user is on
+      questionForm = buildQuestionForm(arg1);
+      // let userInput = $("input[name=answer]:checked").val();
+     //udsing the argument, reassign the value of questionForm with a new template for that question
+
+     //render that questionForm template to the questionAnswer div
+     $('#questionAnswer').html(questionForm);
+     $('#nextBttn').off("click");
+     $('#nextBttn').on("click", (function(event) {
+          // renderScoring(questionNumber, userInput);
+          let userInput = $("input[name=answer]:checked").val();
+          console.log('nextbuttonfires');
+          renderScoring(arg1, userInput);
      }));
+     // nxtButton();
+     // $('#nextBttn').off("click").on("click", (function(event) {
+     //      renderScoring(currentQuestion, userInput);
+     // }));
 
+
+
+}
 
 
 function nxtButton() {
-          //for loop?
           $('#nextBttn').on("click", (function(event) {
+               userInput = $("input[name=answer]:checked").val();
+               // renderScoring(questionNumber, userInput);
                console.log('nextbuttonfires');
-               if (questionNumber < STORE.length) {
-                    let userInput = $("input[name=answer]:checked").val();
-                    renderScoring(questionNumber, userInput);
-                    questionNumber ++;
-                    questionForm = `<form id"questionAnswers" role="questionandanswers">
-                             <div class= "quizProgressionTracker">
-                                  <ul>
-                                       <li>Question: <span class="questionNumber"> ${questionNumber} </span>/10</li>
-                                       <li>Correct: <span class="score">0</span></li>
-                                       <li>Incorrect: <span class="score">0</span></li>
-                                  </ul>
-                          </div>
-                              <div class="question-${questionNumber}">
-                        <h1>${STORE[questionNumber].question}</h1>
-                        <form>
-                        <fieldset>
-                        <label class="answerOption">
-                        <input type="radio" value="0" name="answer" required checked>
-                        <span>${STORE[questionNumber].answers[0]}</span>
-                        </label> <br>
-                        <label class="answerOption">
-                        <input type="radio" value="1" name="answer" required>
-                        <span>${STORE[questionNumber].answers[1]}</span>
-                        </label> <br>
-                        <label class="answerOption">
-                        <input type="radio" value="2" name="answer" required>
-                        <span>${STORE[questionNumber].answers[2]}</span>
-                        </label> <br>
-                        <label class="answerOption">
-                        <input type="radio" value="3" name="answer" required>
-                        <span>${STORE[questionNumber].answers[3]}</span>
-                        </label> <br>
-                        <button type="button" class="bttn" id="nextBttn">Next Question!</button>
-                        </fieldset>
-                        </form>
-                        </div>`;
-                    $("#answerFormRender").html(questionForm);
-                    nxtButton();
-               } else {
-                    renderResults();
-                    restartQuiz();
-                    $('.questionNumber').text(10);
-               }
+               renderScoring(currentQuestion, userInput);
+
+               // if (questionNumber < STORE.length - 1) {
+               //      questionNumber ++;
+               //      renderQuestion(questionNumber);
+               //      //nxtButton();
+               //
+               // } else {
+               //      // renderResults();
+               //      // restartQuiz();
+               //      //$('.questionNumber').text(10);
+               // }
           }));
 }
      let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
 
      let questionCorrect = `<div class="correctFeedback"><div class="scoreIcon">
      <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-     Correct!></p><button type=button id= "nextBttn" class="nextButton">Next</button></div>`;
+     Correct!></p></div>`;
 
     let questionIncorrect = `<div class="incorrectFeedback"><div class="scoreIcon">
     <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-    Sorry, incorrect! The correct answer is ${STORE[currentQuestion].correctAnswer} </p><button type=button id= "nextBttn" class="nextButton">Next</button></div>`;
+    Sorry, incorrect! The correct answer is ${STORE[currentQuestion].correctAnswer}</p></div>`;
 
 // working around this bit of code
-//issue. It seems that in your nxtButton() function, it should try to render the content first, once the content is rendered,
-//then it will register the event to the new "Next Question!" button. At the moment, nxtButton() is just register a button.
-// I think that is not the right sequence. It should 1) create the content (new question), 2) then register the event to the button.
     function renderScoring (currentQuestion, selectedAnswer) {
-         let userAnswer = $('.answerOption').val();
+         //let userAnswer = $('.answerOption').val();
          console.log('renderscoring fires');
          console.log('selectedAnswerIndex' + selectedAnswer);
          console.log('selectedAnswer =' + STORE[currentQuestion].answers[selectedAnswer]);
-         console.log('correctAnswer =' + STORE[currentQuestion].correctAnswer);
+         // console.log('correctAnswer =' + STORE[currentQuestion].correctAnswer);
 
-          if (STORE[currentQuestion].answers[selectedAnswer] == STORE[currentQuestion].correctAnswer) {
+
+         if (STORE[currentQuestion].answers[selectedAnswer] == STORE[currentQuestion].correctAnswer) {
                console.log("comparison if running");
-               $("#answerFormRender").html(`${questionCorrect}`);
                correctScore ++;
-               // $("#answerFormRender").modal( {
-               //      fadeDuration: 100,
-               //      closeExisting: false,
-               //      escapeClose: false,
-               //      clickClose: false,
-               //      showClose: false
-               // })
+               $('#questionAnswer').html(`${questionCorrect}`);
+               // $('#closeModalBttn').on("click", (function(event) {
+               //      //$.modal.close();
+               // }));
+
           } else {
                console.log("renderScoring elsefires");
-               $("#answerFormRender").html(`${questionIncorrect}`);
+               $('#questionAnswer').html(`${questionIncorrect}`);
                incorrectScore++;
-
+               // $('#closeModalBttn').on("click", (function(event) {
+               //      //$.modal.close();
+               //      renderQuestion(currentQuestion + 1);
+               //
+               // }));
                // $(".questionIncorrect").html
-     }
-         // });
-
+          }
+          currentQuestion++;
+          questionNumber++;
+          $("#nextBttn").off('click').on('click', function(){
+               renderQuestion(questionNumber);
+               // nxtButton();
+          });
     }
 //working around on this bit of code
 });
