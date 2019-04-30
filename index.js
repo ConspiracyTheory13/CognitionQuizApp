@@ -52,7 +52,7 @@ $(".startBttn").on("click", function(event) {
     $("#nextButton").append(nextButton);
     renderQuestion(currentQuestion);
     currentQuestion++;
-    // nxtButton();
+
   });
 
 
@@ -80,6 +80,13 @@ function renderQuestion (arg1) {
 
 }
 
+let goodScore = `<div class="happyEnding"><div class="scoreIcon">
+<img src="https://media.giphy.com/media/l41lJ8ywG1ncm9FXW/giphy.gif"}" alt=""/></div><p>
+Great job! Care to play again?</p></div>`;
+
+let badScore = `<div class="sadEnding"><div class="scoreIcon">
+<img src="https://media.giphy.com/media/qKltgF7Aw515K/giphy.gif"}" alt=""/></div><p>
+You'll do better next time! Play again?  </p></div>`;
 
 function nxtButton() {
           $('#nextBttn').on("click", (function(event) {
@@ -94,28 +101,30 @@ function nxtButton() {
                     //nxtButton();
 
                } else {
-                    // renderResults();
+                    // endGame();
                     // restartQuiz();
                     //$('.questionNumber').text(10);
                }
           }));
 }
-     let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
-
-     let questionCorrect = `<div class="correctFeedback"><div class="scoreIcon">
-     <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-     Correct! </p></div>`;
-
-    let questionIncorrect = `<div class="incorrectFeedback"><div class="scoreIcon">
-    <img src="https://media.giphy.com/media/l0HlEEwgZfgqfH70c/giphy.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-    Sorry, incorrect! The correct answer is ${STORE[currentQuestion].correctAnswer}</p></div>`;
 
 // working around this bit of code
     function renderScoring (currentQuestion, selectedAnswer) {
+         let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
+
+         let questionCorrect = `<div class="correctFeedback"><div class="scoreIcon">
+         <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
+         Correct! </p></div>`;
+
+         let questionIncorrect = `<div class="incorrectFeedback"><div class="scoreIcon">
+         <img src="https://media.giphy.com/media/l0HlEEwgZfgqfH70c/giphy.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
+         Sorry, incorrect! The correct answer is ${STORE[currentQuestion].correctAnswer}</p></div>`;
+
          //let userAnswer = $('.answerOption').val();
          console.log('renderscoring fires');
          console.log('selectedAnswerIndex' + selectedAnswer);
          console.log('selectedAnswer =' + STORE[currentQuestion].answers[selectedAnswer]);
+         console.log('correctAnswer =' + STORE[currentQuestion].correctAnswer);
          // console.log('correctAnswer =' + STORE[currentQuestion].correctAnswer);
 
 
@@ -129,7 +138,6 @@ function nxtButton() {
                $('#questionAnswer').html(`${questionIncorrect}`);
                incorrectScore++;
           }
-          currentQuestion++;
           questionNumber++;
           $("#nextBttn").off('click').on('click', function(){
                renderQuestion(questionNumber);
@@ -138,27 +146,34 @@ function nxtButton() {
     }
 //working around on this bit of code
 });
-
-//when you click nextBttn..
-// the computer must compare user input to correctAnswer,
-//then if correctScore, increment correctScore
-// if incorrectScore, incre4memnt incorrectScore
-
-// function renderScore   ($("input[name='radio buttons']:checked").val() {
-//      if (answers == correctAnswer() {
-//           $('.questionAnswerForm').html
-//           (`<div class="correctFeedback"><div class="icon">
-//           <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-//           Correct!></p><button type=button class="nextButton">Next</button></div>`);
-//           correctScore++;
-//      } else {
-//           incorrectScore++;
-//           $('.questionAnswerForm').html
-//           (`<div class="incorrectFeedback"><div class="icon">
-//           <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-//           Incorrect!></p><button type=button class="nextButton">Next</button></div>`);
+// code in progress area
 //
-//      }}
+//
+// let newGameButton =
+//      '<button type="button" class="bttn" id="restartButton">Next Question!</button>';
+//      $("#nextButton").append(newGameButton);
+//
+// function restartGame() {
+//           $('#restartButton').on("click", (function(event) {
+//                console.log('restartGame');
+//
+//           ))};
+//
+//           function endGame(correctScore) {
+//                if (questionNumber ==10 && correctScore > 5) {
+//                 console.log("endgame is running");
+//                 $('#questionAnswer').html(`${happyEnding}`);
+//
+//           } else {
+//                 console.log("endgame elsefires");
+//                 $('#questionAnswer').html(`${sadEnding}`);
+//                 incorrectScore++;
+//           }
+//                restartGame();
+//           });
+//           }
+
+//code in progress area
 
 
      // renderResults();
