@@ -51,6 +51,7 @@ $(".startBttn").on("click", function(event) {
       '<button type="button" class="bttn" id="nextBttn">Next Question!</button>';
     $("#nextButton").append(nextButton);
     renderQuestion(currentQuestion);
+    currentQuestion++;
     // nxtButton();
   });
 
@@ -87,26 +88,26 @@ function nxtButton() {
                console.log('nextbuttonfires');
                renderScoring(currentQuestion, userInput);
 
-               // if (questionNumber < STORE.length - 1) {
-               //      questionNumber ++;
-               //      renderQuestion(questionNumber);
-               //      //nxtButton();
-               //
-               // } else {
-               //      // renderResults();
-               //      // restartQuiz();
-               //      //$('.questionNumber').text(10);
-               // }
+               if (questionNumber < STORE.length - 1) {
+                    questionNumber ++;
+                    renderQuestion(questionNumber);
+                    //nxtButton();
+
+               } else {
+                    // renderResults();
+                    // restartQuiz();
+                    //$('.questionNumber').text(10);
+               }
           }));
 }
      let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
 
      let questionCorrect = `<div class="correctFeedback"><div class="scoreIcon">
      <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
-     Correct!></p></div>`;
+     Correct! </p></div>`;
 
     let questionIncorrect = `<div class="incorrectFeedback"><div class="scoreIcon">
-    <img src="https://media.giphy.com/media/l44QzsOLXxcrigdgI/giphy-downsized.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
+    <img src="https://media.giphy.com/media/l0HlEEwgZfgqfH70c/giphy.gif"}" alt="${STORE[questionNumber].alt}"/></div><p>
     Sorry, incorrect! The correct answer is ${STORE[currentQuestion].correctAnswer}</p></div>`;
 
 // working around this bit of code
@@ -122,20 +123,11 @@ function nxtButton() {
                console.log("comparison if running");
                correctScore ++;
                $('#questionAnswer').html(`${questionCorrect}`);
-               // $('#closeModalBttn').on("click", (function(event) {
-               //      //$.modal.close();
-               // }));
 
           } else {
                console.log("renderScoring elsefires");
                $('#questionAnswer').html(`${questionIncorrect}`);
                incorrectScore++;
-               // $('#closeModalBttn').on("click", (function(event) {
-               //      //$.modal.close();
-               //      renderQuestion(currentQuestion + 1);
-               //
-               // }));
-               // $(".questionIncorrect").html
           }
           currentQuestion++;
           questionNumber++;
