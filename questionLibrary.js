@@ -1,9 +1,10 @@
-const STORE = [
+export const STORE = [
      {
           question: 'You value your status as an informed person who always watches the news and stays up to date on local and world politics via the internet and social media. However, you are often afraid and imagine that crime rates are out of control. Your mind is using the:',
           answers: [
                'Depressive Realism heuristic.',
                'Availability heuristic.',
+function startButton
                'Representativeness heuristic.',
                'Anchoring and Adjustment heuristic'
           ],

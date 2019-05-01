@@ -2,6 +2,7 @@
      box-sizing: border-box;
 }
 
+
 header {
      width: 125px;
      height: 125px;
@@ -14,16 +15,25 @@ header {
      border: darkblue 2px solid;
      display: flex;
 }
+
 .quizHeader {
-     align-items: center;
-     justify-content: center;
      width: auto;
      height: 200px;
      border-radius: 15px;
 }
 
+.quizStart {
+
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
-     display: flex;
      color: white;
      background-image: url("background.jpg");
      width: 100%;
@@ -81,5 +91,5 @@ h1 {
      font-family: verdana;
      font-size: 20px;
      color: white;
-     
+
 }

@@ -5,42 +5,68 @@
           <meta name="viewport" content="width=device-width">
           <title>Mental Short Cuts Quiz App</title>
           <meta name="description" content="Test your knowledge of cognitive short cuts.">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-          <script src="questionLibrary.js"></script>
-          <script src="index.js"></script>
           <link href="index.css" rel="stylesheet" type="text/css" />
      </head>
+
      <body>
+      <template id="modalGuts">
+        <section id="score"></section>
+        <section id="questionAnswer"></section>
+        <section id="nextButton"></section>
+      </template>
+      <template id="questionForm">
+        <div class= "quizProgressionTracker">
+          <ul>
+            <li>Question: <span class="questionNumber"> </span>/10</li>
+            <li>Correct: <span class="score"> </span></li>
+            <li>Incorrect: <span class="score"></span></li>
+          </ul>
+        </div>
+        <form role="questionandanswers">
+          <h1 id="questionTitle"></h1>
+          <div id="questions"></div>
+        </form>
+      </template>
+      <template id="radioQuestion">
+        <label>
+          <span></span>
+          <input type="radio" class= "answerOption" name="answer" value="0">
+        </label>
+      </template>
+      <template id="submitBtn">
+        <button type="submit" id="submitBttn">Score Me!</button>
+      </template>
+      <template id="nextButton">
+        <button type="button" class="nextBttn">Next Question!</button>
+      </template>
           <header role="banner">
                <img class="logo" src="brainlogo.svg" alt="electrifiedbrainlogo"/>
           </header>
 
-    <main role="main" class= "main">
-      <div class="quizStart">
-<div class="quizHeader">
-     <img class="quizHeader" src="neuron.jpg" alt="neuronart"/>
-</div>
+          <main role="main" class= "main">
+              <div class="quizStart">
+                  <img class="quizHeader" src="neuron.jpg" alt="neuronart"/>
+                  <h1>
+                      We make decisions and judgments every day. If we were to carefully consider and analyze
+                      every possible outcome of every decision and judgment, we would never get anything done!
+                      Thankfully our brain makes this easier for us by using cognitive shortcuts.
+                      A heuristic is a mental shortcut that helps us make decisions quickly.
+                      Usually these short cuts are helpful in keeping us from becoming overloaded, however there
+                      are some pitfalls to these short cuts! Start the quiz to learn about some of the ways that
+                      our brains commonly help us!
+                  </h1>
+                  <button type="button" class="startBttn">Start the quiz!</button>
+              </div>
 
-<h1>
-We make decisions and judgments every day. If we were to carefully consider and analyze
-every possible outcome of every decision and judgment, we would never get anything done!
-Thankfully our brain makes this easier for us by using cognitive shortcuts.
-A heuristic is a mental shortcut that helps us make decisions quickly.
-Usually these short cuts are helpful in keeping us from becoming overloaded, however there
-are some pitfalls to these short cuts! Start the quiz to learn about some of the ways that
-our brains commonly help us!
- </h1>
-        <button type="button" class="startBttn">Start the quiz!</button>
-        <!-- <button type= "button" class= "nextBttn"> Next Question! </button> -->
-      </div>
+       <div class = "quizModalContainer" id="quizModal">
+          <div class="questionAnswer" id='questionAnswer'>
+          </div>
+       </div>
 
-      <div class="questionAnswerForm" id='answerFormRender'>
-           <!-- <div class = "questionNumber"> </div> -->
-      </div>
 
 
     </main>
+    <script src="/index.js type="module""></script>
   </body>
 </html>
