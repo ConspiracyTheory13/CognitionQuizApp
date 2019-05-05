@@ -1,4 +1,4 @@
-const STORE = [
+export const STORE = [
      {
           question: 'You value your status as an informed person who always watches the news and stays up to date on local and world politics via the internet and social media. However, you are often afraid and imagine that crime rates are out of control. Your mind is using the:',
           answers: [
@@ -26,10 +26,10 @@ const STORE = [
           answers: [
                'Law of the instrument effect',
                'Statistical Bias',
-               'Gambler’s Fallacy',
+               'Gambler Fallacy',
                '50/50 Theory'
           ],
-          correctAnswer: 'Gambler\'s Fallacy'
+          correctAnswer: 'Gambler Fallacy'
      },
      {
           question: 'The speaker at the cat flatterer convention is asking for audience members to guess the value of an ultra deluxe set of premium cat furniture. “How much do you think it’s worth?” he asks the audience. “At least 3k, right?” the tendency for the audience to then venture guesses closer in range to the speakers represents the:',
@@ -85,7 +85,7 @@ const STORE = [
           question: 'The tendency to prescribe a person’s apparent behavior to their personality and to ignore circumstance is the:',
           answers: [
                'Simulation heuristic.',
-               'Gambler’s Fallacy',
+               'Gambler Fallacy',
                'Fundamental Attribution Error',
                'Learned Helplessness',
 

@@ -1,0 +1,14 @@
+$('.startBttn').on("click",(function(event){
+          $('#answerFormRender').append(questionForm);
+          $("#answerFormRender").modal({
+                    fadeDuration: 100,
+                    closeExisting: false,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+          });
+
+          $('#nextBttn').on("click", (function(event) {
+               nxtButton();
+          }));
+     }));
