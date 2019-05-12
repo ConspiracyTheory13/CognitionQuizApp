@@ -1,15 +1,17 @@
 * {
   box-sizing: border-box;
+  color: rgba(41, 23, 23, 0.945);
+  font-family: 'Libre Baskerville', serif;
+
 } 
 
 body {
-  color: white;
-  background-image: url("background.jpg");
+  background-color: darkslategrey;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  font-size: 20px;
+  background-position: 50% 20%;
+  background-attachment: fixed;
+  background-image: url('logo2.png');
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -17,9 +19,7 @@ body {
 }
 
 header {
-   width: 125px;
-   height: 125px;
-   filter: grayscale(100%);
+
 }
 
 main {
@@ -29,15 +29,26 @@ main {
   grid: auto-flow/auto;
   gap: 20px 0;
   flex: 1;
-  max-width: 75ch;
 }
 
 h1 {
+  padding-top: 20%;
+    
+}
+
+h2 {
+   padding-top: 15%;
    align-items: center;
    justify-content: center;
-   font-family: verdana;
    font-size: 20px;
-   color: white;
+   max-width: 45ch; 
+   text-align: center;
+}
+
+h3 {
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
 
 li {
@@ -58,45 +69,18 @@ li {
      border-radius: 15px;
 }
 
-.quizStart {
-
-}
-
-
-
-.quizStart {
-     align-items: center;
-     justify-content: center;
-     text-align: center;
-     margin-top: 150px;
-     height: 300px;
-     width: 700px;
-     margin-left: 30px;
-     margin-right: 30px;
-}
-
 .quizProgressionTracker {
   align-content: space-around;
 }
 
-
-/* #nextBttn {
-
-     }
-
-#startBttn {
-
-} */
-
-#nextBttn, .startBttn, .bttn {
+.startBttn, .bttn {
      align-items: center;
      justify-content: center;
      width: 300px;
      height: 50px;
-     margin-top: 30px;
-     color: white;
+     /* margin-top: 30px; */
      font-weight: bold;
-     background-color: blue;
+     background-color: darkslategray;
      font-size: 20px;
 }
 
@@ -149,14 +133,17 @@ li {
 .nextBttn {
   grid-column: 1 / end;
   justify-self: flex-start;
-  opacity: 0.5;
-  pointer-events: none;
+  /* opacity: 0.5; */
+  /* pointer-events: none; */
+  opacity: 1 ;
+  pointer-events: pointer;
+  cursor: pointer;
 }
 
-.answerOption:checked ~ .nextBttn {
+/* .answerOption:checked ~ .nextBttn {
   pointer-events: initial;
   cursor: pointer;
   opacity: 1;
-}
+} */
 
 

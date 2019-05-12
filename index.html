@@ -3,13 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Mental Short Cuts Quiz App</title>
+    <title>Cognition and Mental Short Cuts Quiz App</title>
     <meta name="description" content="Test your knowledge of cognitive short cuts.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
   </head>
    <body>
     <template id="modalGutsTemplate">
+      <div class='quizModalContainerInner'>
+        <section class= "quizProgressionTracker">
+          <ul>
+            <li>Question: <span class="questionNumber" id="questionNumber"> </span>/10</li>
+            <li>Correct: <span class="correctScore" id="correctScore"> </span></li>
+            <li>Incorrect: <span class="incorrectScore" id= "incorrectScore"></span></li>
+          </ul>
+        </section>
+        <form id="quizForm">
+          <div id="quizQuestions"></div>
+          <button type="submit" id="submitBttn" hidden>Score Me!</button>
+        </form>
+      </div>
+    </template>
+    <template id="modalQuestionResponse">
       <div class='quizModalContainerInner'>
         <section class= "quizProgressionTracker">
           <ul>
@@ -34,19 +51,18 @@
       <button type="button" class="nextBttn">Next Question!</button>
     </template>
     <header role="banner">
-      <img class="logo" src="brainlogo.svg" alt="electrifiedbrainlogo"/>
+      <h1>Cognition and Mental Heuristics Quiz</h1>
     </header>
     <main role="main" class= "main">
-        <img class="quizHeader" src="neuron.jpg" alt="neuronart"/>
-        <h1>
+        <h2>
             We make decisions and judgments every day. If we were to carefully consider and analyze
             every possible outcome of every decision and judgment, we would never get anything done!
             Thankfully our brain makes this easier for us by using cognitive shortcuts.
             A heuristic is a mental shortcut that helps us make decisions quickly.
             Usually these short cuts are helpful in keeping us from becoming overloaded, however there
             are some pitfalls to these short cuts! Start the quiz to learn about some of the ways that
-            our brains commonly help us!
-        </h1>
+            our brains commonly help us.
+        </h2>
         <button type="button" class="startBttn" id="startBttn">Start the quiz!</button>
     </main>
     <aside class="quizModalContainer" id="quizModalContainer"></aside>
